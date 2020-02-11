@@ -1,5 +1,5 @@
 from numpy import dot
-from numpy.linalg import inv
+from numpy.linalg import det, inv
 
 from .convex_body import ConvexBody
 
@@ -21,6 +21,9 @@ class Derived(ConvexBody):
 
     def label(self):
         return 'Derived from ' + self.primitive.label()
+
+    def volume(self):
+        return abs(det(self.T_inv)) * self.primitive.volume()
 
     def barrier(self, x):
         return self.primitive.barrier(self.to_primitive(x))

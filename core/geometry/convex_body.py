@@ -9,3 +9,6 @@ class ConvexBody(Body):
 
     def centroid(self, xs):
         return mean(xs, axis=0)
+
+    def volume(self):
+        raise NotImplementedError

@@ -13,6 +13,9 @@ class Box(Primitive):
     def sample(self, N=1):
         return 2 * rand(N, self.d) - 1
 
+    def volume(self):
+        return 2 ** self.d
+
     def barrier(self, x):
         # return concatenate([1 + x, 1 - x])
 

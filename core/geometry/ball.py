@@ -1,4 +1,4 @@
-from numpy import identity, zeros
+from numpy import identity, pi, zeros
 from numpy.linalg import norm
 from numpy.random import multivariate_normal, rand
 
@@ -16,6 +16,15 @@ class Ball(Primitive):
 
     def label(self):
          return '$' +  str(self.d) + '$-ball'
+
+    def volume(self):
+        if self.d is 1:
+            return 2
+
+        if self.d is 2:
+            return pi
+
+        return 2 * pi * Ball(self.d - 2).volume() / self.d
 
     def barrier(self, x):
         return 1 - norm(x) ** 2
