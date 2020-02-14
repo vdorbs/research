@@ -1,17 +1,21 @@
-from numpy import concatenate, identity
+from numpy import concatenate, identity, Inf
+from numpy.linalg import norm
 from numpy.random import rand
 
 from .primitive import Primitive
 
 class Box(Primitive):
     def __init__(self, d):
-        self.d = d
+        Primitive.__init__(self, d)
+
+    def sample(self, N=1):
+        return 2 * rand(N, self.d) - 1
 
     def label(self):
         return '$' + str(self.d) + '$-box'
 
-    def sample(self, N=1):
-        return 2 * rand(N, self.d) - 1
+    def is_member(self, xs):
+        return norm(xs, Inf, axis=1) <= 1
 
     def volume(self):
         return 2 ** self.d

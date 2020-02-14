@@ -6,7 +6,7 @@ from .primitive import Primitive
 
 class Ball(Primitive):
     def __init__(self, d):
-        self.d = d
+        Primitive.__init__(self, d)
 
     def sample(self, N=1):
         gaussian_samples = multivariate_normal(zeros(self.d), identity(self.d), N)
@@ -16,6 +16,9 @@ class Ball(Primitive):
 
     def label(self):
          return '$' +  str(self.d) + '$-ball'
+
+    def is_member(self, xs):
+        return norm(xs, axis=1) <= 1
 
     def volume(self):
         if self.d is 1:

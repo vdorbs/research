@@ -5,6 +5,7 @@ from .convex_body import ConvexBody
 
 class Derived(ConvexBody):
     def __init__(self, primitive, T, c):
+        ConvexBody.__init__(self, primitive.d)
         self.primitive = primitive
         self.T = T
         self.T_inv = inv(T)
@@ -15,6 +16,9 @@ class Derived(ConvexBody):
 
     def from_primitive(self, xs):
         return dot(self.T_inv, xs.T).T + self.c
+
+    def is_member(self, xs):
+        return self.primitive.is_member(self.to_primitive(xs))
 
     def sample(self, N):
         return self.from_primitive(self.primitive.sample(N))
