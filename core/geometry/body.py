@@ -14,7 +14,7 @@ class Body:
     def label(self):
         raise NotImplementedError
 
-    def vornoi_iteration(self, N, k, tol):
+    def voronoi_iteration(self, N, k, tol):
         samples = self.sample(N)
 
         def centers_to_clusters(centers):
