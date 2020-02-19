@@ -5,6 +5,9 @@ from .convex_body import ConvexBody
 from .derived import Derived
 from .one_sphere import OneSphere
 from .primitive import Primitive
+from .three_ball import ThreeBall
+from .three_box import ThreeBox
+from .three_ellipsoid import ThreeEllipsoid
 from .two_ball import TwoBall
 from .two_box import TwoBox
 from .visual import Visual
