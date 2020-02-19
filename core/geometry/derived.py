@@ -1,4 +1,4 @@
-from numpy import dot
+from numpy import dot, zeros
 from numpy.linalg import det, inv
 
 from .convex_body import ConvexBody
@@ -22,6 +22,14 @@ class Derived(ConvexBody):
 
     def sample(self, N):
         return self.from_primitive(self.primitive.sample(N))
+
+    def mask(self, N):
+        masked_grids = self.primitive.mask(N)
+        zs = self.from_primitive(self.compressed(masked_grids))
+        for i, (masked_grid, xs) in enumerate(zip(masked_grids, zs.T)):
+            masked_grids[i][~masked_grid.mask] = xs
+
+        return masked_grids
 
     def label(self):
         return 'Derived from ' + self.primitive.label()

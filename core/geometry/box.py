@@ -1,5 +1,6 @@
-from numpy import concatenate, identity, Inf
+from numpy import concatenate, identity, Inf, linspace, meshgrid, ones
 from numpy.linalg import norm
+from numpy.ma import masked_array
 from numpy.random import rand
 
 from .primitive import Primitive
@@ -10,6 +11,14 @@ class Box(Primitive):
 
     def sample(self, N=1):
         return 2 * rand(N, self.d) - 1
+
+    def meshgrid(self, N):
+        grid_1d = linspace(-1, 1, N)
+        return meshgrid(*([grid_1d] * self.d), indexing='ij')
+
+    def mask(self, N):
+        mask = False * ones([N] * self.d)
+        return tuple(map(lambda grid: masked_array(grid, mask), self.meshgrid(N)))
 
     def label(self):
         return '$' + str(self.d) + '$-box'
