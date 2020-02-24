@@ -30,11 +30,7 @@ class Box(Primitive):
         return 2 ** self.d
 
     def barrier(self, x):
-        # return concatenate([1 + x, 1 - x])
+        return concatenate([1 + x, 1 - x])
 
-        raise NotImplementedError
-
-    def barrier_grad(self, x):
-        # return concatenate([identity(len(x)), -identity(len(x))])
-
-        raise NotImplementedError
+    def barrier_jac(self, x):
+        return concatenate([identity(len(x)), -identity(len(x))])

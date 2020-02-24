@@ -40,7 +40,7 @@ class Ball(Primitive):
         return 2 * pi * Ball(self.d - 2).volume() / self.d
 
     def barrier(self, x):
-        return 1 - norm(x) ** 2
+        return array([1 - norm(x) ** 2])
 
-    def barrier_grad(self, x):
-        return -2 * x
+    def barrier_jac(self, x):
+        return array([-2 * x])

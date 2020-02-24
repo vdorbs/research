@@ -22,5 +22,5 @@ class ThreeBall(Ball, Visual):
         xs, ys, zs = self.boundary_grid(N)
         return array(list(map(lambda arr: reshape(arr, -1), [xs, ys, zs]))).T
 
-    def plot_boundary(self, ax, N):
-        return ax.plot_surface(*self.boundary_grid(N), alpha=0.05)
+    def plot_boundary(self, ax, N, color=None, linewidth=None, label=''):
+        return ax.plot_surface(*self.boundary_grid(N), alpha=0.05, label=label)

@@ -24,6 +24,12 @@ class ConvexBody(Body):
     def volume(self):
         raise NotImplementedError
 
+    def barrier(self, x):
+        raise NotImplementedError
+
+    def barrier_jac(self, x):
+        raise NotImplementedError
+
     def compressed(self, masked_grids):
         return arr_map(lambda masked_grid: masked_grid.compressed(), masked_grids).T
 

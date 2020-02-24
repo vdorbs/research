@@ -10,6 +10,6 @@ class ThreeEllipsoid(VisualDerived):
     def label(self):
         return '$3$-ellipsoid'
 
-    def plot_boundary(self, ax, N):
+    def plot_boundary(self, ax, N, color=None, linewidth=None, label=''):
         xs, ys, zs = map(lambda arr: reshape(arr, (N, N)), self.boundary(N).T)
-        return ax.plot_surface(xs, ys, zs, alpha=0.05)
+        return ax.plot_surface(xs, ys, zs, alpha=0.05, label=label)

@@ -40,5 +40,5 @@ class Derived(ConvexBody):
     def barrier(self, x):
         return self.primitive.barrier(self.to_primitive(x))
 
-    def barrier_grad(self, x):
-        return dot(self.T.T, self.primitive.barrier_grad(self.to_primitive(x)))
+    def barrier_jac(self, x):
+        return dot(self.primitive.barrier_jac(self.to_primitive(x)), self.T)
