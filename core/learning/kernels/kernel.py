@@ -11,7 +11,7 @@ class Kernel:
 
     def embedding(self, xs):
 
-        def phi(self, x):
+        def phi(x):
             return array([self.K(x_i, x) for x_i in xs])
 
         return phi
